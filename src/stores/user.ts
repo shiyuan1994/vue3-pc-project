@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 
 // import type  { PersistedStateOptions } from 'pinia-plugin-persistedstate'
@@ -24,7 +24,7 @@ export const useUserInfoStore = defineStore('userInfo', () => {
   const userName = ref('') // 用户名
   const token = ref('') // 用户token
   const password = ref('') // 密码
-
+  const buttonPermissCodes = reactive(['project-table-edit', 'project-table-view']) // 设置默认的权限码（这里的数据从接口获取）
   const router = useRouter() // 路由
   // 登录
   const login = (loginInfo: any) => {
@@ -59,6 +59,7 @@ export const useUserInfoStore = defineStore('userInfo', () => {
     userName,
     token,
     password,
+    buttonPermissCodes,
     login,
     loginOut
   }

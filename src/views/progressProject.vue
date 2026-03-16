@@ -25,12 +25,14 @@
           <el-table-column prop="currentStage" label="当前交易环节" />
           <el-table-column label="操作" width="180">
             <template #default="scope">
-              <el-button 
+              <el-button
+                v-buttonPermission="'project-table-edit'"
                 size="small" 
                 type="primary" 
                 @click="handleEdit(scope.row)"
               >编辑</el-button>
-              <el-button 
+              <el-button
+                v-buttonPermission="'project-table-view'"
                 size="small" 
                 type="danger" 
                 @click="handleDelete(scope.row.gcBH)"

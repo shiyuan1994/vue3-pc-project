@@ -8,6 +8,8 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate' // pinia持久化存储
 
+import buttonPermission from './utils/buttonPermission'
+
 import App from './App.vue'
 import router from './router'
 
@@ -19,5 +21,7 @@ pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(ElementPlus, { locale: zhCn }) // element-plus 中文语言
 app.use(router)
+
+app.directive('buttonPermission', buttonPermission) // 按钮自定义指令
 
 app.mount('#app')
