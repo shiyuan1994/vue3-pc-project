@@ -10,7 +10,7 @@
           <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitLogin" style="width: 100%;">登录</el-button>
+          <el-button type="primary" @click="submitLoginThrottle" style="width: 100%;">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -20,6 +20,7 @@
 import { reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { useUserInfoStore } from '@/stores/user'
+import { useThrottle } from '@/utils/useThrottleHook';
 // 登录信息
 let loginForm = ref({
   userName: '张三',
@@ -38,6 +39,7 @@ const userInfoStore = useUserInfoStore()
 console.log(userInfoStore, 'store')
 // 提交登录
 const submitLogin = () => {
+  console.log('节流1秒一次')
   formRef.value.validate(async (valid) => {
     if(valid) {
       const res = await userInfoStore.login(loginForm.value)
@@ -49,6 +51,7 @@ const submitLogin = () => {
     }
   })
 }
+const submitLoginThrottle = useThrottle(submitLogin, 1000)
 </script>
 <style scoped>
 .login-container {

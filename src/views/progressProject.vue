@@ -6,7 +6,7 @@
           <el-input v-model="query.keyword" placeholder="搜索" style="width:200px" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getList">搜索</el-button>
+          <el-button type="primary" @click="getListDebounce">搜索</el-button>
           <el-button @click="resetQuery">重置</el-button>
         </el-form-item>
       </el-form>
@@ -49,8 +49,8 @@
         v-model:page-size="pageInfo.size"
         :total="500"
         layout="total, sizes, prev, pager, next, jumper"
-        @size-change="getList"
-        @current-change="getList"
+        @size-change="getListDebounce"
+        @current-change="getListDebounce"
       />
     </div>
   </el-card>
@@ -59,6 +59,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
+import { useDebounce } from '@/utils/useDebounceHook'
 
 // 查询条件
 const query = ref({
@@ -76,6 +77,7 @@ const loading = ref(false)
 
 // 获取列表
 const getList = () => {
+  console.log('防抖时间1秒')
   loading.value = true
   // 模拟接口
   setTimeout(() => {
@@ -93,7 +95,7 @@ const getList = () => {
     loading.value = false
   }, 300)
 }
-
+const getListDebounce = useDebounce(getList, 1000)
 // 重置
 const resetQuery = () => {
   query.value.keyword = ''
