@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup>
-import { reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { useUserInfoStore } from '@/stores/user'
 import { useThrottle } from '@/utils/useThrottleHook';
