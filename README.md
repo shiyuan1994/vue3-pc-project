@@ -15,3 +15,5 @@ vue3、ts、vite、element-plus、pinia
 npm install -> npm run dev
 
 # 在线访问地址：
+
+https://transcendent-figolla-fb547b.netlify.app/
