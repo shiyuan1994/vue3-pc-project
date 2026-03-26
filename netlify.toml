@@ -1,0 +1,18 @@
+# Netlify 配置文件 - Vue 项目专用
+[build]
+  # 构建命令（和上面一致）
+  command = "npm run build"
+  # 构建输出目录（Vue 默认 dist）
+  publish = "dist"
+
+# 解决 Vue 单页应用 刷新 404 问题
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# 构建优化配置（推荐）
+[build.environment]
+  NODE_VERSION = "24"
+  NPM_FLAGS = "--legacy-peer-deps"
