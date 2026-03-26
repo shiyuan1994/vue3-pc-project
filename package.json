@@ -1,5 +1,6 @@
 {
   "name": "vue3-pc-project",
+  "description": "vue3+ts 后台管理系统演示项目",
   "version": "0.0.0",
   "private": true,
   "type": "module",
